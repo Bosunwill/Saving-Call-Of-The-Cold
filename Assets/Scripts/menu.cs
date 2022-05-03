@@ -9,7 +9,7 @@ public class menu : MonoBehaviour
     List<string> Einventory = new List<string>{"isCassette1", "isCassette1", "isCassette2"};
     public void GamePlay ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
     void LateUpdate()
     {
@@ -20,7 +20,7 @@ public class menu : MonoBehaviour
     {
         if (enter == true)
         {
-             SceneManager.LoadScene(2);
+             SceneManager.LoadScene(1);
         }
        
     }
@@ -53,5 +53,14 @@ public class menu : MonoBehaviour
     {
         Debug.Log("QUIT!!");
         Application.Quit();
+    }
+    public void Credits ()
+    {
+         SceneManager.LoadScene(5);
+    }
+
+    public void MainMenu ()
+    {
+        SceneManager.LoadScene(0);
     }
 }
