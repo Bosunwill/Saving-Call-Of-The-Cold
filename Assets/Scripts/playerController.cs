@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -68,13 +69,13 @@ public class playerController : MonoBehaviour
     {
         if (other)
         {
-            // Debug.Log("HIT");
+            Debug.Log("HIT");
         }
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("You got hit");
-            currentHealth -= 200 * Time.deltaTime;
-         //   healthBar.SetHealth(currentHealth);
+            currentHealth -= 400 * Time.deltaTime;
+            healthBar.SetHealth(currentHealth);
 
         }
     }
@@ -130,10 +131,13 @@ public class playerController : MonoBehaviour
         // Applies the inputs to the Rigidbody 
         theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
 
-        if (currentHealth < 0.1)
+        if (currentHealth < 0)
         {
             isVicDead = true;
         }
+
+        if(isVicDead == true )
+            moveSpeed = 0;
 
         //Animator controller for movement recieved from the rigidbody
         anim.SetFloat("Speed", theRB.velocity.magnitude);
