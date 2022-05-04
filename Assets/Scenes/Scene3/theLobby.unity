@@ -12922,6 +12922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BadNurse
       objectReference: {fileID: 0}
+    - target: {fileID: 4450543899525410504, guid: 14b731db71fdc9842ad2d144c185ccb8, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4450543899525410510, guid: 14b731db71fdc9842ad2d144c185ccb8, type: 3}
       propertyPath: anim
       value: 
@@ -12934,6 +12938,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 678941896}
+    - target: {fileID: 4450543899525410510, guid: 14b731db71fdc9842ad2d144c185ccb8, type: 3}
+      propertyPath: detectionDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4450543899525410510, guid: 14b731db71fdc9842ad2d144c185ccb8, type: 3}
       propertyPath: points.Array.size
       value: 4
@@ -28889,6 +28897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BadDoctor
       objectReference: {fileID: 0}
+    - target: {fileID: 3502637311292504218, guid: c20d1add5d1af7c4e9961c2e2ab7b598, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3502637311292504288, guid: c20d1add5d1af7c4e9961c2e2ab7b598, type: 3}
       propertyPath: m_AngularSpeed
       value: 0
@@ -39548,6 +39560,14 @@ PrefabInstance:
     - target: {fileID: 5150501662589186247, guid: 990519d7111611446ac825dd51671410, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150501663031357153, guid: 990519d7111611446ac825dd51671410, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150501663031357153, guid: 990519d7111611446ac825dd51671410, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5150501663354737299, guid: 990519d7111611446ac825dd51671410, type: 3}
       propertyPath: healthBar
@@ -50745,7 +50765,7 @@ MonoBehaviour:
   - {fileID: 435869337}
   - {fileID: 1938933922}
   target: {fileID: 678941896}
-  detectionDistance: 10
+  detectionDistance: 5
   attackDistance: 1.5
   theSR: {fileID: 1493281494}
   isAttacking: 0
