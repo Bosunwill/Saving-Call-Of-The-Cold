@@ -74,7 +74,7 @@ public class playerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("You got hit");
-            currentHealth -= 400 * Time.deltaTime;
+            currentHealth -= 25;
             healthBar.SetHealth(currentHealth);
 
         }
@@ -109,7 +109,7 @@ public class playerController : MonoBehaviour
         {
             Debug.Log("CROUCHING");
             isCrouched = true;
-            moveSpeed = 0;
+            moveSpeed = 1;
         }
         else if (Input.GetButtonUp("Crouch"))
         {
@@ -131,7 +131,7 @@ public class playerController : MonoBehaviour
         // Applies the inputs to the Rigidbody 
         theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             isVicDead = true;
         }
@@ -144,26 +144,6 @@ public class playerController : MonoBehaviour
         anim.SetBool("isCrouched", isCrouched);
         anim.SetFloat("currentHealth", currentHealth);
         anim.SetBool("victorDead", isVicDead);
-
-
-        //Commented out to remove jumping but not deleted incase we change our minds
-        //Stores information if the raycast hits anything and detects the gorund when jumping
-        /*RaycastHit hit;
-        if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, .3f, whatIsGround))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
-
-        // Key input for the jump and velocity
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            theRB.velocity += new Vector3(0f, jumpForce, 0f);
-        } */
 
 
         //This flips the sprite when moving
