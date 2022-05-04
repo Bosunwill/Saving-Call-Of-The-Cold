@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class playerController : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class playerController : MonoBehaviour
     public float currentTemp;
 
     private bool isVicDead = false;
+    private bool victorMelt = false;
 
     //Function on trigger to control temp on collision might be able to be 
     //expanded for ambient temp system later
@@ -131,19 +133,22 @@ public class playerController : MonoBehaviour
         // Applies the inputs to the Rigidbody 
         theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && currentTemp < -23f)
         {
             isVicDead = true;
         }
 
-        if(isVicDead == true )
+        if(isVicDead == true ){
             moveSpeed = 0;
+            StartCoroutine(reloadOnDeath());
+        }
 
         //Animator controller for movement recieved from the rigidbody
         anim.SetFloat("Speed", theRB.velocity.magnitude);
         anim.SetBool("isCrouched", isCrouched);
         anim.SetFloat("currentHealth", currentHealth);
         anim.SetBool("victorDead", isVicDead);
+        anim.SetBool("victorMelt", victorMelt);
 
 
         //This flips the sprite when moving
@@ -159,7 +164,11 @@ public class playerController : MonoBehaviour
         if (currentTemp > -23f)
         {
             Debug.Log("You are too hot!");
-            currentHealth -= 1 * Time.deltaTime * 1;
+            currentHealth -= 1 * Time.deltaTime * 5;
+            if(currentTemp >= -23 && currentHealth <=0 ){
+                victorMelt = true;
+                StartCoroutine(reloadOnDeath());
+            }
           //  healthBar.SetHealth(currentHealth);
 
         }
@@ -170,6 +179,11 @@ public class playerController : MonoBehaviour
            // healthBar.SetHealth(currentHealth);
 
         }
-
     }
+    IEnumerator reloadOnDeath(){
+        yield return new WaitForSeconds(3);
+        Scene thisScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(thisScene.name);
+    }
+
 }
